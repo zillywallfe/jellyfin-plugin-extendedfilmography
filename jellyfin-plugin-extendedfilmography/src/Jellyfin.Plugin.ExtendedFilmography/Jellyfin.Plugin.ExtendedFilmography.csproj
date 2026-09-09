@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RootNamespace>Jellyfin.Plugin.ExtendedFilmography</RootNamespace>
+    <AssemblyName>Jellyfin.Plugin.ExtendedFilmography</AssemblyName>
+
+    <!-- Keep in sync with build.yaml and the version in manifest.json. -->
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--
+      Floating within the 10.11 line, so a patch release of the server needs no change here.
+      NuGet supports wildcards; the plugin manifest does NOT - see the note in build.yaml.
+
+      Changing server line also changes the target framework:
+        Jellyfin 10.10.x  ->  JellyfinVersion 10.10.*  +  TargetFramework net8.0
+        Jellyfin 10.11.x  ->  JellyfinVersion 10.11.*  +  TargetFramework net9.0
+        Jellyfin 12.x     ->  JellyfinVersion 12.*     +  TargetFramework net10.0
+      Then update targetAbi and framework in build.yaml and manifest.json to match.
+    -->
+    <JellyfinVersion>10.11.11</JellyfinVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Jellyfin.Controller" Version="$(JellyfinVersion)" />
+    <PackageReference Include="Jellyfin.Model" Version="$(JellyfinVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Required for the response middleware and the IStartupFilter that installs it. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\configPage.html" />
+  </ItemGroup>
+
+</Project>
