@@ -1,0 +1,12 @@
+[
+  {
+    "guid": "54fa2f7d-5365-456e-8017-75aad96f47d4",
+    "name": "Extended Filmography",
+    "description": "Adds external TMDb films and series to Jellyfin person pages without adding media to the library database. Tested by the owner with Jellyfin web and Neptune.",
+    "overview": "Show what an actor is known for beyond your library.",
+    "owner": "zillywallfe",
+    "category": "Metadata",
+    "imageUrl": null,
+    "versions": []
+  }
+]
